@@ -1,0 +1,57 @@
+﻿@model StudentVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="student.Id" class="control-label"></label>
+                <input asp-for="student.Id" class="form-control" />
+                <span asp-validation-for="student.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.FirstName" class="control-label"></label>
+                <input asp-for="student.FirstName" class="form-control" />
+                <span asp-validation-for="student.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.LastName" class="control-label"></label>
+                <input asp-for="student.LastName" class="form-control" />
+                <span asp-validation-for="student.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.Address" class="control-label"></label>
+                <input asp-for="student.Address" class="form-control" />
+                <span asp-validation-for="student.Address" class="text-danger"></span>
+            </div>
+            <br />
+            <select asp-for="student.StudentClass.Level" class="form-select">
+                @foreach (var item in Model.ClassLevelBranchForDropDown)
+                {
+                    <option value="@item.Value" selected=>@item.Text</option>
+                }
+            </select>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,40 @@
+﻿@model ClassVM
+
+@{
+    ViewData["Title"] = "Class Page";
+}
+
+<a class="btn btn-primary" asp-action="Create" asp-controller="Class">Create</a>
+@foreach(var item in Model.BranchClassesForDropDown)
+{
+    <a class="btn btn-success" asp-action="GetClass" asp-controller="Class" asp-route-id="@item.Text">@item.Text</a>
+}
+<a class="btn btn-success" asp-action="GetClass" asp-controller="Class" asp-route-id="">List All</a>
+
+
+<table class="table tabletable-hover table-bordered caption-top">
+    <caption>List of Students</caption>
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(x=>x.classes.Level)</th>
+            <th>@Html.DisplayNameFor(x=>x.classes.Branch)</th>
+            <th>Total Student Count</th>
+            <th>Detail</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ClassList)
+        {
+            <tr>
+                <td>@item.Level</td>
+                <td>@item.Branch</td>
+                <td>@item.TotalStudentCount</td>
+                <td class="text-center"><a class="btn btn-info" asp-action="Detail" asp-controller="Class" asp-route-id="@item.Id">Detail</a></td>
+                <td class="text-center"><a class="btn btn-warning" asp-action="Update" asp-controller="Class" asp-route-id="@item.Id">Update</a></td>
+                <td class="text-center"><a class="btn btn-danger" asp-action="Delete" asp-controller="Class" asp-route-id="@item.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
